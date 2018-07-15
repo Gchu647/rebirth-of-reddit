@@ -1,2 +1,26 @@
 body {
-  background-color: #AA4324; }
+  background-image: url("bg.jpg");
+  color: lightsalmon;
+  margin: 0%; }
+  body .header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    background-color: whitesmoke; }
+  body .grids-parent {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    height: 500px; }
+    body .grids-parent .grid-pairs {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      width: 60%;
+      height: 50%;
+      margin-top: 20px;
+      margin-bottom: 20px; }
+      body .grids-parent .grid-pairs .grids {
+        width: 40%;
+        height: 100%;
+        background-color: whitesmoke; }
