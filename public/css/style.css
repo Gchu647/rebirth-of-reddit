@@ -1,4 +1,7 @@
 body {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
   background-image: url("bg.jpg");
   color: lightseagreen;
   margin: 0%; }
@@ -6,23 +9,44 @@ body {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    width: 100%;
     height: 60px;
     background-color: whitesmoke; }
   body .grids-parent {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    width: 100%;
     height: 500px; }
     body .grids-parent .grid-pairs {
       display: flex;
       flex-flow: row wrap;
-      justify-content: flex-start;
-      width: 60%;
-      height: 50%;
+      justify-content: space-around;
+      width: 800px;
+      height: 55%;
       margin-top: 20px;
       margin-bottom: 20px; }
       body .grids-parent .grid-pairs .grids {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
         width: 40%;
         height: 100%;
-        margin-left: 8%;
         background-color: whitesmoke; }
+        body .grids-parent .grid-pairs .grids .grid-img {
+          margin-top: 10px;
+          width: 280px;
+          height: 55%;
+          border: 2px solid lightgray; }
+        body .grids-parent .grid-pairs .grids .grid-title {
+          width: 280px;
+          height: 10%;
+          border: 2px solid lightgray; }
+        body .grids-parent .grid-pairs .grids .grid-author {
+          width: 280px;
+          height: 5%;
+          border: 2px solid lightgray; }
+        body .grids-parent .grid-pairs .grids .grid-content {
+          width: 280px;
+          height: 20%;
+          border: 2px solid lightgray; }
