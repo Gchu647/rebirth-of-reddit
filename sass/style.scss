@@ -1,11 +1,12 @@
 body {
   background-image: url("bg.jpg");
-  color: lightsalmon;
+  color: lightseagreen;
   margin: 0%;
   .header {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    height: 60px;
     background-color: whitesmoke;
   }
   .grids-parent{
@@ -16,7 +17,7 @@ body {
     .grid-pairs{
       display: flex;
       flex-flow: row wrap;
-      justify-content: space-around;
+      justify-content: flex-start;
       // border: 1px solid gray;
       width: 60%;
       height: 50%;
@@ -25,6 +26,7 @@ body {
       .grids{
         width: 40%;
         height: 100%;
+        margin-left: 8%;
         background-color: whitesmoke;
       }
 
