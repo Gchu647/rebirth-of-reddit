@@ -2,9 +2,9 @@ body {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  background-image: url("bg.jpg");
-  color: lightseagreen;
   margin: 0%;
+  background-image: url("bg.jpg");
+  font-family: 'Lato', sans-serif;
   .header {
     display: flex;
     flex-flow: row wrap;
@@ -43,17 +43,21 @@ body {
         }
         .grid-title {
           width: 280px;
-          height: 10%;
+          height: 20%;
           border: 2px solid lightgray;
+          font-family: 'Oswald', sans-serif;
+          font-size: 20px;
         }
+        /*
         .grid-author {
           width: 280px;
           height: 5%;
           border: 2px solid lightgray;
         }
+        */
         .grid-content {
           width: 280px;
-          height: 20%;
+          height: 10%;
           border: 2px solid lightgray;
         }
       }

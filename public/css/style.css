@@ -2,9 +2,9 @@ body {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  margin: 0%;
   background-image: url("bg.jpg");
-  color: lightseagreen;
-  margin: 0%; }
+  font-family: 'Lato', sans-serif; }
   body .header {
     display: flex;
     flex-flow: row wrap;
@@ -32,7 +32,14 @@ body {
         justify-content: center;
         width: 40%;
         height: 100%;
-        background-color: whitesmoke; }
+        background-color: whitesmoke;
+        /*
+        .grid-author {
+          width: 280px;
+          height: 5%;
+          border: 2px solid lightgray;
+        }
+        */ }
         body .grids-parent .grid-pairs .grids .grid-img {
           margin-top: 10px;
           width: 280px;
@@ -40,13 +47,11 @@ body {
           border: 2px solid lightgray; }
         body .grids-parent .grid-pairs .grids .grid-title {
           width: 280px;
-          height: 10%;
-          border: 2px solid lightgray; }
-        body .grids-parent .grid-pairs .grids .grid-author {
-          width: 280px;
-          height: 5%;
-          border: 2px solid lightgray; }
+          height: 20%;
+          border: 2px solid lightgray;
+          font-family: 'Oswald', sans-serif;
+          font-size: 20px; }
         body .grids-parent .grid-pairs .grids .grid-content {
           width: 280px;
-          height: 20%;
+          height: 10%;
           border: 2px solid lightgray; }
