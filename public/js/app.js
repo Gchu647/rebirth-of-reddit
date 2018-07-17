@@ -3,7 +3,7 @@ let redObj = {} //store info from reddit
 let cardsNum = 0; //The amount of cards I need to print
 let reqRed = new XMLHttpRequest();
 reqRed.addEventListener("load", getSubReddit);
-reqRed.open("GET", "https://www.reddit.com/r/comics.json?raw_json=1"); //The link can be a changeable variable
+reqRed.open("GET", "https://www.reddit.com/r/comics/.json?raw_json=1"); //The link can be a changeable variable
 reqRed.send();
 
 function getSubReddit() {
@@ -43,11 +43,18 @@ function makeCards(count) {
 // Puts reddit info into the the cards
 function assembleCardInfo(cardsImg, title, content, count) {
   let imgInfo = redObj["data"]["children"][count]["data"]["preview"]["images"][0]["resolutions"][2]["url"];
-  console.log(redObj["data"]["children"][count]["data"]["preview"]["images"][0]["resolutions"]);
   let titleInfo = redObj["data"]["children"][count]["data"]["title"];
   let contentInfo = redObj["data"]["children"][count]["data"]["author"];
 
-  cardsImg.style.backgroundImage = `url(${imgInfo})`;
+  //Testing time created
+  let timeCreated = redObj["data"]["children"][count]["data"]["created_utc"];
+  console.log( moment(`${timeCreated}`, "x").fromNow);
+
+  if(imgInfo) {
+    cardsImg.style.backgroundImage = `url(${imgInfo})`;
+  } else {
+    console.log("No Image!")
+  }
 
   if(titleInfo.length > 58) { //Keep title length in check
     let shortTitle = titleInfo.split("").slice(0, 58).join("");
@@ -56,5 +63,5 @@ function assembleCardInfo(cardsImg, title, content, count) {
     title.innerHTML =  titleInfo;
   }
 
-  content.innerHTML = `Posted by ${contentInfo}`;
+  content.innerHTML = `Submitted by ${contentInfo}`;
 }
