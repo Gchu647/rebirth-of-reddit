@@ -13,6 +13,23 @@ body {
     height: 60px;
     background-color: white;
   }
+  .menu {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+    color: lightgray;
+    background-color: #373739;
+    .menu-items {
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+    }
+    .menu-items:hover {
+      color: #c95631;
+    }
+  }
   #cards-parent{
     display: flex;
     flex-flow: row wrap;
@@ -26,6 +43,7 @@ body {
       margin-top: 10px;
       width: 350px;
       height: 350px;
+      border: solid 3px white;
       background-color: white;
       .cards-img {
         margin-top: 20px;
@@ -47,5 +65,22 @@ body {
         // border: 2px solid lightgray;
       }
     }
+    .cards:hover {
+      border: solid 3px #ec8c17;
+      .cards-title{
+        color: #c95631;
+      }
+    }
+  }
+  .footer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+    height: 20px;
+    padding: 10px;
+    margin-top: 10px;
+    color: lightgray;
+    background-color: #373739;
   }
 }

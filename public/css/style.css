@@ -12,6 +12,20 @@ body {
     width: 100%;
     height: 60px;
     background-color: white; }
+  body .menu {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+    color: lightgray;
+    background-color: #373739; }
+    body .menu .menu-items {
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px; }
+    body .menu .menu-items:hover {
+      color: #c95631; }
   body #cards-parent {
     display: flex;
     flex-flow: row wrap;
@@ -24,6 +38,7 @@ body {
       margin-top: 10px;
       width: 350px;
       height: 350px;
+      border: solid 3px white;
       background-color: white; }
       body #cards-parent .cards .cards-img {
         margin-top: 20px;
@@ -38,3 +53,17 @@ body {
       body #cards-parent .cards .cards-author {
         width: 320px;
         height: 15%; }
+    body #cards-parent .cards:hover {
+      border: solid 3px #ec8c17; }
+      body #cards-parent .cards:hover .cards-title {
+        color: #c95631; }
+  body .footer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+    height: 20px;
+    padding: 10px;
+    margin-top: 10px;
+    color: lightgray;
+    background-color: #373739; }

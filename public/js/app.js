@@ -1,5 +1,6 @@
 // Grab info from comic sub Reddit
 let redObj = {} //store info from reddit
+let cardsNum = 0; //The amount of cards I need to print
 let reqRed = new XMLHttpRequest();
 reqRed.addEventListener("load", getSubReddit);
 reqRed.open("GET", "https://www.reddit.com/r/comics.json?raw_json=1"); //The link can be a changeable variable
@@ -8,14 +9,15 @@ reqRed.send();
 function getSubReddit() {
   redObj = JSON.parse(this.responseText);
   console.log("Aloha ", redObj);
-  makeCards(3);
+  cardsNum = redObj["data"]["children"].length;
+  makeCards(cardsNum);
 }
 
 //Takes information form sub Reddit and makes cards
-function makeCards(cardCount) {
+function makeCards(count) {
   let cardsParent = document.getElementById("cards-parent");
 
-  for (let i = 0; i < cardCount; i++) {
+  for (let i = 0; i < count; i++) {
     let cards = document.createElement("div");
     cards.className = "cards";
 
