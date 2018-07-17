@@ -3,7 +3,7 @@ let redObj = {} //store info from reddit
 let cardsNum = 0; //The amount of cards I need to print
 let reqRed = new XMLHttpRequest();
 reqRed.addEventListener("load", getSubReddit);
-reqRed.open("GET", "https://www.reddit.com/r/comics/.json?raw_json=1"); //The link can be a changeable variable
+reqRed.open("GET", "https://www.reddit.com/r/ramen/.json?raw_json=1"); //The link can be a changeable variable
 reqRed.send();
 
 function getSubReddit() {
@@ -57,23 +57,18 @@ function makeCards(count) {
 
 // Puts reddit info into the the cards
 function assembleCardInfo(cardsImg, cardsTitle, cardsAuthor, cardsTime, cardsUpvotes, count) {
-  //Grad info from object
-  let imgInfo = redObj["data"]["children"][count]["data"]["preview"]["images"][0]["resolutions"][2]["url"];
-  let titleInfo = redObj["data"]["children"][count]["data"]["title"];
-  let authorInfo = redObj["data"]["children"][count]["data"]["author"];
-  let createdUTC = redObj["data"]["children"][count]["data"]["created_utc"];
-  let createdTime = moment(`${createdUTC}`, "X").fromNow();
-  let scoreInfo = redObj["data"]["children"][count]["data"]["score"];
-  console.log(scoreInfo + "upvotes");
-
   //Images
-  if(imgInfo) {
-    cardsImg.style.backgroundImage = `url(${imgInfo})`;
+  if(redObj["data"]["children"][count]["data"]["thumbnail_height"] === null) {
+    cardsImg.style.backgroundImage = `url(http://via.placeholder.com/320x200)`;
+    console.log("No Image!");
   } else {
-    console.log("No Image!")
+    let imgInfo = redObj["data"]["children"][count]["data"]["preview"]["images"][0]["resolutions"][2]["url"];
+    cardsImg.style.backgroundImage = `url(${imgInfo})`;
   }
 
   //Titles
+  let titleInfo = redObj["data"]["children"][count]["data"]["title"];
+
   if(titleInfo.length > 58) { //Keep title length in check
     let shortTitle = titleInfo.split("").slice(0, 58).join("");
     cardsTitle.innerHTML = `${shortTitle}...`;
@@ -81,8 +76,16 @@ function assembleCardInfo(cardsImg, cardsTitle, cardsAuthor, cardsTime, cardsUpv
     cardsTitle.innerHTML =  titleInfo;
   }
 
-  //Author, Time, Upvotes
+  //Author
+  let authorInfo = redObj["data"]["children"][count]["data"]["author"];
   cardsAuthor.innerHTML = `• Submitted by ${authorInfo} `;
+
+  //Time
+  let createdUTC = redObj["data"]["children"][count]["data"]["created_utc"];
+  let createdTime = moment(`${createdUTC}`, "X").fromNow();
   cardsTime.innerHTML = `• ${createdTime} `;
+
+  //Upvotes
+  let scoreInfo = redObj["data"]["children"][count]["data"]["score"];
   cardsUpvotes.innerHTML = `• ${scoreInfo} upvotes `;
 }
