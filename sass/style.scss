@@ -13,56 +13,38 @@ body {
     height: 60px;
     background-color: whitesmoke;
   }
-  #grids-parent{
+  #cards-parent{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    width: 100%;
-    height: 500px;
-    .rows{
+    // background-color: aqua;
+    width: 100%;    
+    .cards{
       display: flex;
       flex-flow: row wrap;
-      justify-content: space-around;
-      // border: 1px solid gray;
-      width: 800px;
-      height: 55%;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      .grids{
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        width: 40%;
-        height: 100%;
-        background-color: whitesmoke;
-        .grid-img {
-          margin-top: 10px;
-          width: 280px;
-          height: 55%;
-          border: 2px solid lightgray;
-        }
-        .grid-title {
-          width: 280px;
-          height: 20%;
-          border: 2px solid lightgray;
-          font-family: 'Oswald', sans-serif;
-          font-size: 20px;
-        }
-        /*
-        .grid-author {
-          width: 280px;
-          height: 5%;
-          border: 2px solid lightgray;
-        }
-        */
-        .grid-content {
-          width: 280px;
-          height: 10%;
-          border: 2px solid lightgray;
-        }
+      justify-content: center;
+      margin-top: 10px;
+      width: 350px;
+      height: 350px;
+      background-color: whitesmoke;
+      .cards-img {
+        margin-top: 10px;
+        width: 300px;
+        height: 50%;
+        border: 2px solid lightgray;
       }
-
+      .cards-title {
+        width: 300px;
+        height: 20%;
+        border: 2px solid lightgray;
+        font-family: 'Oswald', sans-serif;
+        font-size: 24px;
+      }
+      .cards-author {
+        width: 300px;
+        height: 20%;
+        border: 2px solid lightgray;
+      }
     }
   }
-
 }

@@ -6,73 +6,52 @@ reqRed.open("GET", "https://www.reddit.com/r/comics.json"); //The link can be a 
 reqRed.send();
 
 function getSubReddit() {
-  redObj = JSON.parse(this.responseText)
-  makeGrids(3);
+  redObj = JSON.parse(this.responseText);
   console.log("Aloha ", redObj);
+  makeCards(3);
 }
 
-function makeGrids(n) {
-  let gridsParent = document.getElementById("grids-parent");
-  let counter = 0;
-  let column = 0;
+//Takes information form sub Reddit and makes cards
+function makeCards(cardCount) {
+  let cardsParent = document.getElementById("cards-parent");
 
-  if(n%2 === 0) {
-    column = n/2; // condition for odd grids
-  } else {
-    column = (n+1)/2; // conditon for even grids
-  }
+  for (let i = 0; i < cardCount; i++) {
+    let cards = document.createElement("div");
+    cards.className = "cards";
+    console.log(cardsParent);
+    console.log(cards);
 
-  for (let i = 0; i < column; i++) {
-    let rows = document.createElement("div");
-    rows.className = "rows";
+    let cardsImg = document.createElement("div");
+    cardsImg.className = "cards-img";
+    cards.appendChild(cardsImg);
     
-    //Make grids and elements inside the grids.
-    for (let j = 0; j < 2; j++) {
-      if(counter < n){
-        let grids = document.createElement("div");
-        grids.className = "grids";
+    let cardsTitle = document.createElement("div");
+    cardsTitle.className = "cards-title";
+    cards.appendChild(cardsTitle);
+    
+    let cardsAuthor = document.createElement("div");
+    cardsAuthor.className = "cards-author";
+    cards.appendChild(cardsAuthor);
 
-        let gridImg = document.createElement("div");
-        gridImg.className = "grid-img";
-        grids.appendChild(gridImg);
-        
-        let gridTitle = document.createElement("div");
-        gridTitle.className = "grid-title";
-        grids.appendChild(gridTitle);
-        
-        let gridContent = document.createElement("div");
-        gridContent.className = "grid-content";
-        grids.appendChild(gridContent);
+    // Assemble a function to assemble information
+    assembleCardInfo(cardsTitle, cardsAuthor, i);
 
-        // Assemble information here.
-        assembleCardInfo(gridTitle, gridContent, counter);
-
-        rows.appendChild(grids);
-        counter++;
-      }
-    }
-
-    gridsParent.appendChild(rows); // Redo gridsParent as id
+    cardsParent.appendChild(cards);
   }
 }
 
+// Puts reddit info into the the cards
 function assembleCardInfo(title, content, count) {
   let titleInfo = redObj["data"]["children"][count]["data"]["title"];
   let contentInfo = redObj["data"]["children"][count]["data"]["author"];
 
-  if(titleInfo.length > 66) { //Keep title length in check
-    let shortTitle = titleInfo.split("").slice(0, 66).join("");
+  if(titleInfo.length > 58) { //Keep title length in check
+    let shortTitle = titleInfo.split("").slice(0, 58).join("");
     console.log(shortTitle);
-    title.innerHTML = `${shortTitle} ...`;
+    title.innerHTML = `${shortTitle}...`;
   } else {
     title.innerHTML =  titleInfo;
   }
 
-  content.innerHTML = `Created by ${contentInfo}`;
+  content.innerHTML = `Posted by ${contentInfo}`;
 }
-
-/*
-let gridAuthor = document.createElement("div");
-gridAuthor.className = "grid-author";
-grids.appendChild(gridAuthor);
-*/
