@@ -50,7 +50,7 @@ body {
         height: 15%;
         font-family: 'Oswald', sans-serif;
         font-size: 20px; }
-      body #cards-parent .cards .cards-author {
+      body #cards-parent .cards .cards-info {
         width: 320px;
         height: 15%; }
     body #cards-parent .cards:hover {

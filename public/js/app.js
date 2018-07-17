@@ -21,47 +21,68 @@ function makeCards(count) {
     let cards = document.createElement("div");
     cards.className = "cards";
 
+    // Images
     let cardsImg = document.createElement("div");
     cardsImg.className = "cards-img";
     cards.appendChild(cardsImg);
     
+    // Title
     let cardsTitle = document.createElement("div");
     cardsTitle.className = "cards-title";
     cards.appendChild(cardsTitle);
     
+    // Author, created time, and upvotes
+    let cardsInfo = document.createElement("div");
+    cardsInfo.className = "cards-info";
+    
     let cardsAuthor = document.createElement("div");
     cardsAuthor.className = "cards-author";
-    cards.appendChild(cardsAuthor);
+    cardsInfo.appendChild(cardsAuthor);
+
+    let cardsTime = document.createElement("div");
+    cardsTime.className = "cards-time";
+    cardsInfo.appendChild(cardsTime);
+
+    let cardsUpvotes = document.createElement("div");
+    cardsUpvotes.className = "cards-upvotes";
+    cardsInfo.appendChild(cardsUpvotes);
 
     // Assemble a function to assemble information
-    assembleCardInfo(cardsImg, cardsTitle, cardsAuthor, i);
+    assembleCardInfo(cardsImg, cardsTitle, cardsAuthor, cardsTime, cardsUpvotes, i);
 
+    cards.appendChild(cardsInfo);
     cardsParent.appendChild(cards);
   }
 }
 
 // Puts reddit info into the the cards
-function assembleCardInfo(cardsImg, title, content, count) {
+function assembleCardInfo(cardsImg, cardsTitle, cardsAuthor, cardsTime, cardsUpvotes, count) {
+  //Grad info from object
   let imgInfo = redObj["data"]["children"][count]["data"]["preview"]["images"][0]["resolutions"][2]["url"];
   let titleInfo = redObj["data"]["children"][count]["data"]["title"];
-  let contentInfo = redObj["data"]["children"][count]["data"]["author"];
+  let authorInfo = redObj["data"]["children"][count]["data"]["author"];
+  let createdUTC = redObj["data"]["children"][count]["data"]["created_utc"];
+  let createdTime = moment(`${createdUTC}`, "X").fromNow();
+  let scoreInfo = redObj["data"]["children"][count]["data"]["score"];
+  console.log(scoreInfo + "upvotes");
 
-  //Testing time created
-  let timeCreated = redObj["data"]["children"][count]["data"]["created_utc"];
-  console.log( moment(`${timeCreated}`, "x").fromNow);
-
+  //Images
   if(imgInfo) {
     cardsImg.style.backgroundImage = `url(${imgInfo})`;
   } else {
     console.log("No Image!")
   }
 
+  //Titles
   if(titleInfo.length > 58) { //Keep title length in check
     let shortTitle = titleInfo.split("").slice(0, 58).join("");
-    title.innerHTML = `${shortTitle}...`;
+    cardsTitle.innerHTML = `${shortTitle}...`;
   } else {
-    title.innerHTML =  titleInfo;
+    cardsTitle.innerHTML =  titleInfo;
   }
 
-  content.innerHTML = `Submitted by ${contentInfo}`;
+  //Author, Time, Upvotes
+  cardsAuthor.innerHTML = `• Submitted by ${authorInfo} `;
+  cardsTime.innerHTML = `• ${createdTime} `;
+  cardsUpvotes.innerHTML = `• ${scoreInfo} upvotes `;
 }
