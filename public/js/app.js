@@ -1,5 +1,18 @@
+// Grab info from comic sub Reddit
+let redObj = {} //store info from reddit
+let reqRed = new XMLHttpRequest();
+reqRed.addEventListener("load", getSubReddit);
+reqRed.open("GET", "https://www.reddit.com/r/comics.json"); //The link can be a changeable variable
+reqRed.send();
+
+function getSubReddit() {
+  redObj = JSON.parse(this.responseText)
+  makeGrids(3);
+  console.log("Aloha ", redObj);
+}
+
 function makeGrids(n) {
-  let gridsParent = document.getElementsByClassName("grids-parent");
+  let gridsParent = document.getElementById("grids-parent");
   let counter = 0;
   let column = 0;
 
@@ -10,8 +23,8 @@ function makeGrids(n) {
   }
 
   for (let i = 0; i < column; i++) {
-    let gridPairs = document.createElement("div");
-    gridPairs.className = "grid-pairs";
+    let rows = document.createElement("div");
+    rows.className = "rows";
     
     //Make grids and elements inside the grids.
     for (let j = 0; j < 2; j++) {
@@ -26,63 +39,40 @@ function makeGrids(n) {
         let gridTitle = document.createElement("div");
         gridTitle.className = "grid-title";
         grids.appendChild(gridTitle);
-
-        /*
-        let gridAuthor = document.createElement("div");
-        gridAuthor.className = "grid-author";
-        grids.appendChild(gridAuthor);
-        */
         
         let gridContent = document.createElement("div");
         gridContent.className = "grid-content";
         grids.appendChild(gridContent);
 
-        //Call functions for XMR request
-        redditInfo(gridTitle, gridContent);
+        // Assemble information here.
+        assembleCardInfo(gridTitle, gridContent, counter);
 
-        gridPairs.appendChild(grids);
+        rows.appendChild(grids);
         counter++;
       }
     }
 
-    gridsParent[0].appendChild(gridPairs);
+    gridsParent.appendChild(rows); // Redo gridsParent as id
   }
 }
 
-makeGrids(1);
+function assembleCardInfo(title, content, count) {
+  let titleInfo = redObj["data"]["children"][count]["data"]["title"];
+  let contentInfo = redObj["data"]["children"][count]["data"]["author"];
 
-function redditInfo(title, content) {
-  let reqComics = new XMLHttpRequest();
-  reqComics.addEventListener("load", getComics);
-  reqComics.open("GET", "https://www.reddit.com/r/comics.json");
-  reqComics.send();
-
-  function getComics() {
-    let redObj = JSON.parse(this.responseText)
-    let titleInfo = redObj["data"]["children"][5]["data"]["title"];
-    let contentInfo = redObj["data"]["children"][5]["data"]["author"];
-    console.log(redObj); //Max should be 67.
-
-    if(titleInfo.length > 66) { //Keep title length in check
-      let shortTitle = titleInfo.split("").slice(0, 66).join("");
-      console.log(shortTitle);
-      title.innerHTML = `${shortTitle} ...`;
-    } else {
-      title.innerHTML =  titleInfo;
-    }
-
-    content.innerHTML = `Created by ${contentInfo}`;
+  if(titleInfo.length > 66) { //Keep title length in check
+    let shortTitle = titleInfo.split("").slice(0, 66).join("");
+    console.log(shortTitle);
+    title.innerHTML = `${shortTitle} ...`;
+  } else {
+    title.innerHTML =  titleInfo;
   }
+
+  content.innerHTML = `Created by ${contentInfo}`;
 }
 
 /*
-function getRedditInfo() {
-  let redObj = JSON.parse(this.responseText)
-  console.log(redObj);
-}
-
-let oReq = new XMLHttpRequest();
-oReq.addEventListener("load", getRedditInfo);
-oReq.open("GET", "https://www.reddit.com/r/comics.json");
-oReq.send();
+let gridAuthor = document.createElement("div");
+gridAuthor.className = "grid-author";
+grids.appendChild(gridAuthor);
 */
