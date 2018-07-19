@@ -52,11 +52,13 @@ body {
         background-repeat: no-repeat;
         // border: 2px solid lightgray;
       }
-      .cards-title {
+      .cards-title a{
         width: 320px;
         height: 15%;
         font-family: 'Oswald', sans-serif;
         font-size: 20px;
+        color: black;
+        text-decoration: none;
         // border: 2px solid lightgray;
       }
       .cards-info {
@@ -67,8 +69,9 @@ body {
     }
     .cards:hover {
       border: solid 3px #ec8c17;
-      .cards-title{
+      .cards-title a{
         color: #c95631;
+        text-decoration: none;
       }
     }
   }
