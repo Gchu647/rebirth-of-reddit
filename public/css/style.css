@@ -5,14 +5,14 @@ body {
   margin: 0%;
   background-image: url("bg.jpg");
   font-family: 'Lato', sans-serif; }
-  body .header {
+  body #header {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     width: 100%;
     height: 60px;
     background-color: white; }
-  body .menu {
+  body #menu {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -21,10 +21,10 @@ body {
     padding: 10px;
     color: lightgray;
     background-color: #373739; }
-    body .menu .menu-items {
+    body #menu .menu-items {
       font-family: 'Oswald', sans-serif;
       font-size: 16px; }
-    body .menu .menu-items:hover {
+    body #menu .menu-items:hover {
       color: #c95631; }
   body #cards-parent {
     display: flex;
@@ -57,7 +57,7 @@ body {
       border: solid 3px #ec8c17; }
       body #cards-parent .cards:hover .cards-title {
         color: #c95631; }
-  body .footer {
+  body #footer {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
