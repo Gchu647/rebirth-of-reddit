@@ -22,14 +22,14 @@ function rebirthReddit(subRed) {
     console.log("Passed in value: ", redObj);
     reqRed.send();
   } else {
-    reqRed.open("GET", "https://www.reddit.com/r/ramen/.json?raw_json=1", false);
+    reqRed.open("GET", "https://www.reddit.com/r/ramen/.json?raw_json=1");
     console.log("default web page");
     reqRed.send();
   }
 
   function getSubReddit() {
     redObj = JSON.parse(this.responseText);
-    // console.log("Aloha ", redObj);
+    console.log("Aloha ", redObj);
     cardsNum = redObj["data"]["children"].length;
     makeCards(cardsNum);
   }
@@ -78,6 +78,8 @@ function rebirthReddit(subRed) {
 
   // Puts reddit info into the the cards
   function assembleCardInfo(cardsImg, cardsTitle, cardsAuthor, cardsTime, cardsUpvotes, count) {
+    console.log("Assmeble run: ", redObj);
+
     //Images
     if(redObj["data"]["children"][count]["data"]["thumbnail_height"] === null) {
       cardsImg.style.backgroundImage = `url(http://via.placeholder.com/320x200)`;
